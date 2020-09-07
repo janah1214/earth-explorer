@@ -6,10 +6,6 @@ html, body{
     box-sizing: border-box;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    /* -webkit-transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    -webkit-perspective: 1000; */
-    
     /* height: 100%; would be used for full page header image */
 }
 
@@ -99,6 +95,9 @@ p{
     min-height: 10vh;
     overflow: hidden;
     transition: height 1s ease-in-out;
+    position: fixed;
+    z-index: 9999;
+    width: 100%; /* TODO: toggle icons in mobile mode not visible on small devices */
 }
 
 .nav .nav-menu{    
@@ -116,7 +115,7 @@ p{
 .nav .toggle-collapse .toggle-icons{
     display: flex;
     justify-content: flex-end;
-    padding: 1.7rem 0;
+    padding: 1.7rem 3rem;
 }
 
 .nav .toggle-collapse .toggle-icons i{
@@ -196,7 +195,7 @@ p{
     background: url('../assets/start-header.JPG');
     height: 75vh; /* TODO in mobile & responsive mode entsprechend anpassen */
     background-size: cover; /* contain: the background image scales trying to fit the content area, but does not lose its aspect ratio or get blurry */
-    /* background-attachment: fixed; */
+    background-attachment: fixed;
     background-repeat: no-repeat;
     justify-content: center;
     padding: 100px;
@@ -218,12 +217,14 @@ p{
   }
   
   .sticky + .content {
-    padding-top: 70px; /* TODO in mobile & responsive mode entsprechend anpassen */
+    padding-top: 0; /* TODO (70px wenn menu schon da ist und nicht position: fixed) in mobile & responsive mode entsprechend anpassen */
   }
 
 /* --------------- Site title ---------------- */
-main .site-title{
+main .site-title.home{
     background: url('../assets/background-image.JPG');
+    height: 80vh !important;
+    padding-top: 20vh !important;
 }
 
 main .site-title.destinations.overview{
@@ -242,16 +243,16 @@ main .site-title.photography{
     background: url('../assets/photography.jpg');
 }
 
-main .site-title, 
-main .site-title .destinations.overview, 
-main .site-title .destinations.nz, 
-main .site-title .blog, 
-main .site-title .photography {
+main .site-title.home, 
+main .site-title.destinations.overview, 
+main .site-title.destinations.nz, 
+main .site-title.blog, 
+main .site-title.photography {
     background-size: cover !important;
     height: 70vh;
     display: flex;
     justify-content: center;
-    /* background-attachment: fixed !important; parallax-effect */
+    background-attachment: fixed !important; /* parallax-effect - note: significant scrolling problems */
 }
 
 main .site-title .site-background{
@@ -284,7 +285,6 @@ main .site-title .site-background .headBtn:hover{
 main .blog{
     background-repeat: no-repeat;
     background-position: right;
-    height: 100vh;
     width: 100%;
     background-size: 65%;
 }
